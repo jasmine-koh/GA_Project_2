@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>APRON</title>
+  </head>
+  <body>
+    <h1>APRON - Recipe Page</h1>
+    <a href="/apron"><button>home</button></a>
+    <a href="/apron/<%= recipe.id %>/edit %>"><button>edit recipe</button></a>
+    <div id="basicInfo">
+      <img src="<%= recipe.img %>" /><br />
+      <b><%= recipe.name %></b><br />
+      <b>Preparation Time: </b><%= recipe.prep %> mins<br />
+      <b>Cooking Time: </b><%= recipe.cook %> mins<br />
+      <b>Serving Size: </b><%= recipe.serves %> pax<br />
+    </div>
+    <div id="listOfIngredients">
+      <b>Ingredients</b><br />
+      <ol>
+        <% for ( let i = 0; i < recipe.ingredients.length; i++ ) {%>
+        <li>
+          <%= recipe.ingredients[i] %>
+        </li>
+        <% } %>
+      </ol>
+    </div>
+    <div id="listOfInstrutions">
+      <b>Instructions</b><br />
+      <ol>
+        <% for ( let i = 0; i < recipe.instructions.length; i++ ) {%>
+        <li>
+          <%= recipe.instructions[i] %>
+        </li>
+        <% } %>
+      </ol>
+    </div>
+    <!-- DELETE FORM -->
+    <form action="/apron/<%= recipe.id %>?_method=DELETE" method="POST">
+      <input type="submit" value="Delete" />
+    </form>
+
+    <!-- <a href="#"><button>delete recipe</button></a> -->
+  </body>
+</html>
