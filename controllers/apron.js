@@ -13,6 +13,23 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/app", (req, res) => {
+  Recipe.find((error, allRecipe) => {
+    res.render("app/index.ejs", {
+      recipe: allRecipe,
+      currentUser: req.session.currentUser
+    });
+  });
+});
+
+router.get("/app", (req, res) => {
+  if (req.session.currentUser) {
+    res.render("app/index.ejs");
+  } else {
+    res.redirect("/sessions/new");
+  }
+});
+
 // ====== NEW ======
 router.get("/new", (req, res) => {
   res.render(`new.ejs`);
