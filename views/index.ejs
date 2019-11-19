@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% include ./partials/head.ejs %>
     <title>APRON</title>
   </head>
   <body>
-    <h1>APRON - Share your recipes!</h1>
+    <% include ./partials/menu.ejs %>
     <a href="/apron/new"><button>add recipe</button></a>
     <a href="#"><button>all recipes</button></a>
-    <div>
-      <% for (let i = 0; i < recipe.length; i++) { %>
-      <div>
-        <a href="/apron/<%= recipe[i].id %>">
-          <img src="<%= recipe[i].img %>" />
-        </a>
+    <div class="photo-grid-container">
+      <div class="photo-grid">
+        <% for (let i = 0; i < recipe.length; i++) { %>
+        <div class="photo-grid-item">
+          <a href="/apron/<%= recipe[i].id %>">
+            <img src="<%= recipe[i].img %>" />
+          </a>
+        </div>
+        <% } %>
       </div>
-      <% } %>
     </div>
   </body>
 </html>

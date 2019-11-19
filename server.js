@@ -2,10 +2,16 @@ const express = require(`express`);
 const app = express();
 const mongoose = require(`mongoose`);
 const methodOverride = require("method-override");
+const recipeController = require("./controllers/apron.js");
+const userController = require("./controllers/users.js");
+const sessionsController = require("./controllers/sessions.js");
+const session = require("express-session");
+require("dotenv").config();
 
-const Recipe = require("./models/recipe.js");
+// const Recipe = require("./models/recipe.js");
 
-const PORT = 3000;
+const PORT = process.env.PORT;
+const mongoURI = process.env.MONGODB_URI;
 
 mongoose.connect("mongodb://localhost:27017/apron", {
   useNewUrlParser: true
@@ -18,69 +24,18 @@ mongoose.connection.once("open", () => {
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
-// ==================== GET ROUTES ====================
-
-// ====== INDEX ======
-app.get("/apron", (req, res) => {
-  Recipe.find((error, allRecipe) => {
-    res.render("index.ejs", {
-      recipe: allRecipe
-    });
-  });
-});
-
-// ====== NEW ======
-app.get("/apron/new", (req, res) => {
-  res.render(`new.ejs`);
-});
-
-// ====== EDIT ======
-app.get("/apron/:id/edit", (req, res) => {
-  Recipe.findById(req.params.id, (error, foundRecipe) => {
-    res.render("edit.ejs", {
-      recipe: foundRecipe
-    });
-  });
-});
-
-// ====== SHOW ======
-app.get("/apron/:id", (req, res) => {
-  Recipe.findById(req.params.id, (err, foundRecipe) => {
-    res.render(`show.ejs`, {
-      recipe: foundRecipe
-    });
-  });
-});
-
-// ==================== ACTION ROUTES ====================
-
-// ====== CREATE (POST) ======
-app.post("/apron", (req, res) => {
-  Recipe.create(req.body, (error, createdRecipe) => {
-    res.redirect("/apron");
-  });
-  //   res.send(req.body);
-});
-
-// ====== EDIT (PUT) ======
-app.put("/apron/:id", (req, res) => {
-  Recipe.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (err, updatedRecipe) => {
-      res.redirect(`/apron/${req.params.id}`);
-    }
-  );
-});
-
-// ====== DELETE ======
-app.delete("/apron/:id", (req, res) => {
-  Recipe.findByIdAndDelete(req.params.id, (err, data) => {
-    res.redirect("/apron");
-  });
-});
+// controllers
+app.use("/apron", recipeController);
+app.use("/users", userController);
+app.use("/sessions", sessionsController);
 
 app.listen(PORT, () => {
   console.log(`i'm listening...`);
