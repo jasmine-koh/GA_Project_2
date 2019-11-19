@@ -6,8 +6,30 @@
   </head>
   <body>
     <% include ./partials/menu.ejs %>
-    <a href="/apron/new"><button>add recipe</button></a>
-    <a href="#"><button>all recipes</button></a>
+    <div class="menu-container">
+      <div class="menu">
+        <% if(currentUser) { %> Welcome <%=currentUser.username%>!
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input
+            type="submit"
+            value="Logout"
+            class="waves-effect waves-light btn"
+          />
+        </form>
+        <% } else { %>
+        <div class="signup"><a href="/users/new">Sign Up</a></div>
+        <div class="login"><a href="/sessions/new">Login</a></div>
+        <% } %>
+      </div>
+    </div>
+    <div class="button">
+      <div class="addRecipe">
+        <a href="/apron/new"><button>add recipe</button></a>
+      </div>
+      <div class="allRecipe">
+        <a href="#"><button>my recipes</button></a>
+      </div>
+    </div>
     <div class="photo-grid-container">
       <div class="photo-grid">
         <% for (let i = 0; i < recipe.length; i++) { %>
