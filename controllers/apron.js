@@ -32,14 +32,17 @@ router.get("/app", (req, res) => {
 
 // ====== NEW ======
 router.get("/new", (req, res) => {
-  res.render(`new.ejs`);
+  res.render("new.ejs", {
+    currentUser: req.session.currentUser
+  });
 });
 
 // ====== EDIT ======
 router.get("/:id/edit", (req, res) => {
   Recipe.findById(req.params.id, (error, foundRecipe) => {
     res.render("edit.ejs", {
-      recipe: foundRecipe
+      recipe: foundRecipe,
+      currentUser: req.session.currentUser
     });
   });
 });
@@ -48,7 +51,8 @@ router.get("/:id/edit", (req, res) => {
 router.get("/:id", (req, res) => {
   Recipe.findById(req.params.id, (err, foundRecipe) => {
     res.render(`show.ejs`, {
-      recipe: foundRecipe
+      recipe: foundRecipe,
+      currentUser: req.session.currentUser
     });
   });
 });

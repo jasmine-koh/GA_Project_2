@@ -16,22 +16,37 @@
             class="waves-effect waves-light btn"
           />
         </form>
+        <div class="button">
+          <div class="addRecipe">
+            <a href="/apron/new">
+              <input
+                type="submit"
+                value="add recipe"
+                class="waves-effect waves-light btn"
+              />
+            </a>
+          </div>
+        </div>
         <% } else { %>
         <div class="signup">
-          <a href="/users/new"><button>Sign Up</button></a>
+          <a href="/users/new">
+            <input
+              type="submit"
+              value="sign up"
+              class="waves-effect waves-light btn"
+            />
+          </a>
         </div>
         <div class="login">
-          <a href="/sessions/new"><button>Login</button></a>
+          <a href="/sessions/new">
+            <input
+              type="submit"
+              value="log in"
+              class="waves-effect waves-light btn"
+            />
+          </a>
         </div>
         <% } %>
-      </div>
-    </div>
-    <div class="button">
-      <div class="addRecipe">
-        <a href="/apron/new"><button>add recipe</button></a>
-      </div>
-      <div class="allRecipe">
-        <a href="#"><button>my recipes</button></a>
       </div>
     </div>
     <div class="photo-grid-container">
@@ -41,7 +56,9 @@
           <a href="/apron/<%= recipe[i].id %>">
             <img src="<%= recipe[i].img %>" />
           </a>
+          <div class="photo-name"><%= recipe[i].name %></div>
         </div>
+
         <% } %>
       </div>
     </div>

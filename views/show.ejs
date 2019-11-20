@@ -1,44 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% include ./partials/head.ejs %>
     <title>APRON</title>
   </head>
   <body>
-    <h1>APRON - Recipe Page</h1>
-    <a href="/apron"><button>home</button></a>
-    <a href="/apron/<%= recipe.id %>/edit %>"><button>edit recipe</button></a>
-    <div id="basicInfo">
-      <img src="<%= recipe.img %>" /><br />
-      <b><%= recipe.name %></b><br />
-      <b>Preparation Time: </b><%= recipe.prep %> mins<br />
-      <b>Cooking Time: </b><%= recipe.cook %> mins<br />
-      <b>Serving Size: </b><%= recipe.serves %> pax<br />
-    </div>
-    <div id="listOfIngredients">
-      <b>Ingredients</b><br />
-      <ol>
-        <% for ( let i = 0; i < recipe.ingredients.length; i++ ) {%>
-        <li>
-          <%= recipe.ingredients[i] %>
-        </li>
-        <% } %>
-      </ol>
-    </div>
-    <div id="listOfInstrutions">
-      <b>Instructions</b><br />
-      <ol>
-        <% for ( let i = 0; i < recipe.instructions.length; i++ ) {%>
-        <li>
-          <%= recipe.instructions[i] %>
-        </li>
-        <% } %>
-      </ol>
-    </div>
-    <!-- DELETE FORM -->
+    <% include ./partials/menu.ejs %>
+    <div class="menu-container">
+      <div class="menu">
+        <% if(currentUser) { %> Welcome <%=currentUser.username%>!
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input
+            type="submit"
+            value="Logout"
+            class="waves-effect waves-light btn"
+          />
+        </form>
+        <div>
+          <a href="/apron/<%= recipe.id %>/edit %>">
+            <input
+            type="submit"
+            value="Edit Recipe"
+            class="waves-effect waves-light btn"
+          />
+          </a>
+        </div>
+            <!-- DELETE FORM -->
     <form action="/apron/<%= recipe.id %>?_method=DELETE" method="POST">
       <input type="submit" value="Delete" />
     </form>
 
-    <!-- <a href="#"><button>delete recipe</button></a> -->
+        <% } else { %>
+          <div class="signup">
+              <a href="/users/new">
+                <input
+                  type="submit"
+                  value="sign up"
+                  class="waves-effect waves-light btn"
+                />
+              </a>
+            </div>
+            <div class="login">
+              <a href="/sessions/new">
+                <input
+                  type="submit"
+                  value="log in"
+                  class="waves-effect waves-light btn"
+                />
+              </a>
+            </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- ACTUAL RECIPE STARTS HERE -->
+
+    <div class="recipe-container">
+      <div>
+        <h2>APRON - Recipe: <%= recipe.name %></h2>
+      </div>
+      <div class="recipe-head">
+        <div><img src="<%= recipe.img %>" /></div>
+
+        <div class="recipe-body">
+          <div class="recipe-content" id="basicInfo">
+            <b><%= recipe.name %></b><br />
+            <b>Preparation Time: </b><%= recipe.prep %> mins<br />
+            <b>Cooking Time: </b><%= recipe.cook %> mins<br />
+            <b>Serving Size: </b><%= recipe.serves %> pax<br />
+          </div>
+          
+          <div class="recipe-content" id="listOfIngredients">
+            <b>Ingredients</b><br />
+            <ol>
+              <% for ( let i = 0; i < recipe.ingredients.length; i++ ) {%>
+              <li>
+                <%= recipe.ingredients[i] %>
+              </li>
+              <% } %>
+            </ol>
+          </div>
+        </div>
+
+      <div class="recipe-head" id="listOfInstrutions">
+        <b>Instructions</b><br />
+        <ol>
+          <% for ( let i = 0; i < recipe.instructions.length; i++ ) {%>
+          <li>
+            <%= recipe.instructions[i] %>
+          </li>
+          <% } %>
+        </ol>
+      </div>
+      <a href="/apron">
+        <input
+        type="submit"
+        value="back"
+        class="waves-effect waves-light btn"
+      />
+      </a>
+    
+    </div>
+
   </body>
 </html>

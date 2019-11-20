@@ -5,25 +5,28 @@
   </head>
     <body>
     <% include ../partials/menu.ejs %>
-      <div class="user_container">
-        <h1>Create User</h1>
+    <div class="header-edit-container">
+        <div class="form_container">
+            <div class="header-edit">
+                <h2>Create User</h2>
+            </div>
         <div class="row">
-          <form class="col s12" action="/users" method="POST">
+          <form class="form-style" action="/users" method="POST">
             <div class="row">
-              <div class="input-field col s6">
+              <div>
                 <label for="username">User Name</label>
-                <input id="username" type="text" class="validate" name="username" required>
+                <input id="username" type="text" class="validate field-long" name="username" required>
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
+              <div>
                 <label for="password">Password</label>
-                <input id="password" type="password" class="validate" name="password" required>
+                <input id="password" type="password" class="validate field-long" name="password" required>
               </div>
-            </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-            </button>
+            </div><br />
+            <div><input type="submit" /></div>
           </form>
         </div>
+      </div>
     </body>
 </html>

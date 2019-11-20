@@ -69,7 +69,12 @@
 .photo-grid-item {
   border: 1px solid #fff;
   max-width: 270px;
-  max-height: 150px;
+  max-height: 200px;
+}
+
+.photo-name {
+  display: flex;
+  justify-content: center;
 }
 
 img {
@@ -81,4 +86,136 @@ img {
   padding: 20px 0;
   display: flex;
   justify-content: center;
+}
+
+/* EDIT EJS */
+.header-edit-container {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header-edit {
+  width: 900px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.header-edit-home {
+  background: #4b99ad;
+  padding: 8px 15px 8px 15px;
+  border: none;
+  color: #fff;
+}
+
+/* SHOW EJS */
+.recipe-container {
+  width: 900px;
+  padding: 20px 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.recipe-head {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dotted #4b99ad;
+}
+
+.recipe-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.recipe-content {
+  padding: 20px;
+}
+
+/* Forms */
+.form-style {
+  max-width: 500px;
+  padding: 10px 20px;
+  background: #ffffff;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px dotted #4b99ad;
+}
+
+.form-style label {
+  margin: 0 0 3px 0;
+  padding: 0px;
+  display: block;
+  font-weight: bold;
+}
+
+.form-style input[type="text"],
+.form-style input[type="date"],
+.form-style input[type="datetime"],
+.form-style input[type="password"],
+.form-style input[type="number"],
+.form-style input[type="search"],
+.form-style input[type="time"],
+.form-style input[type="url"],
+.form-style input[type="email"],
+textarea,
+select {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 7px;
+  margin: 0px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  outline: none;
+}
+.form-style input[type="text"]:focus,
+.form-style input[type="date"]:focus,
+.form-style input[type="datetime"]:focus,
+.form-style input[type="password"]:focus,
+.form-style input[type="number"]:focus,
+.form-style input[type="search"]:focus,
+.form-style input[type="time"]:focus,
+.form-style input[type="url"]:focus,
+.form-style input[type="email"]:focus,
+.form-style textarea:focus,
+.form-style select:focus {
+  -moz-box-shadow: 0 0 8px #88d5e9;
+  -webkit-box-shadow: 0 0 8px #88d5e9;
+  box-shadow: 0 0 8px #88d5e9;
+  border: 1px solid #88d5e9;
+}
+.form-style .field-divided {
+  width: 15%;
+}
+
+.form-style .field-long {
+  width: 100%;
+}
+
+.ingredient-container {
+  padding: 20px 0;
+  display: flex;
+}
+
+.instruction-container {
+  padding: 20px 0;
+}
+
+.form-style input[type="submit"] {
+  background: #4b99ad;
+  padding: 8px 15px 8px 15px;
+  border: none;
+  color: #fff;
 }

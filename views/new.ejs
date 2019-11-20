@@ -1,130 +1,193 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% include ./partials/head.ejs %>
     <title>APRON</title>
-    <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body>
-    <h1>APRON - Add Recipe!</h1>
-    <a href="/apron"><button>home</button></a>
-
-    <div class="container">
-      <form action="/apron" method="POST">
-        <!-- Image -->
-        <label for="img">Image: </label>
-        <input
-          type="text"
-          id="img"
-          name="img"
-          placeholder="url of image here"
-          value=""
-        /><br />
-
-        <!-- Name of Dish -->
-        <label for="name">Name: </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="name of dish here"
-          value=""
-        /><br />
-
-        <!-- Preparation Time -->
-        <label for="prep">Prep Time: </label>
-        <input
-          type="number"
-          id="prep"
-          name="prep"
-          min="0"
-          step="1"
-          placeholder="prep time in mins"
-          value=""
-        /><br />
-
-        <!-- Cooking Time -->
-        <label for="cook">Cooking Time: </label>
-        <input
-          type="number"
-          id="cook"
-          name="cook"
-          min="0"
-          step="1"
-          placeholder="cooking time in mins"
-          value=""
-        /><br />
-
-        <!-- Serving Size -->
-        <label for="serves">Serving Size: </label>
-        <input
-          type="number"
-          id="servers"
-          name="serves"
-          min="0"
-          step="1"
-          placeholder="serving size here"
-          value=""
-        /><br />
-
-        <!-- Ingredients-->
-        <label for="ingredient_input">Ingredients: </label><br />
-        <input
-          type="text"
-          id="ingredient_input"
-          name="ingredients_input"
-          placeholder="ingredient here"
-          value=""
-        /><br />
-
-        <input
-          type="button"
-          class="myButton"
-          id="addIngredient"
-          value="add next ingredient"
-        />
-        <br />
-        <br />
-
-        <!-- Steps -->
-        <label for="instructions_input">Instructions: </label><br />
-        <input
-          type="text"
-          id="instructions_input"
-          name="instructions_input"
-          placeholder="step here"
-          value=""
-        /><br />
-
-        <input
-          type="button"
-          class="myButton"
-          id="addStep"
-          value="add next step"
-        />
-        <br />
-        <br />
-
-        <input type="submit" />
-
-        <ul>
-          <input id="hidden_ul" type="hidden" />
-        </ul>
-        <ul>
-          <input id="hidden_ul_step" type="hidden" />
-        </ul>
-      </form>
+    <% include ./partials/menu.ejs %>
+    <div class="menu-container">
+      <div class="menu">
+        <% if(currentUser) { %> Welcome <%=currentUser.username%>!
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input
+            type="submit"
+            value="Logout"
+            class="waves-effect waves-light btn"
+          />
+        </form>
+      </div>
     </div>
 
-    <div class="container">
-      <!-- display data already entered here -->
-      <!-- ingredients here-->
-      <ul id="ingredients_list"></ul>
-
-      <!-- steps here -->
-      <ul id="instructions_list"></ul>
+    <div class="header-edit-container">
+      <div class="header-edit">
+        <div><h2>Add Recipe!</h2></div>
+        <div>
+          <a href="/apron"><button class="header-edit-home">home</button></a>
+        </div>
+      </div>
     </div>
+
+    <div class="big-container">
+      <div class="form-container">
+        <form class="form-style" action="/apron" method="POST">
+          <!-- Image -->
+          <label for="img">Image: </label>
+          <input
+            class="field-long"
+            type="text"
+            id="img"
+            name="img"
+            placeholder="url of image here"
+            value=""
+          /><br />
+
+          <!-- Name of Dish -->
+          <label for="name">Name: </label>
+          <input
+            class="field-long"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="name of dish here"
+            value=""
+          /><br />
+
+          <!-- Preparation Time -->
+          <label for="prep">Prep Time: </label>
+          <input
+            class="field-divided"
+            type="number"
+            id="prep"
+            name="prep"
+            min="0"
+            step="1"
+            placeholder="prep time in mins"
+            value=""
+          /><br />
+
+          <!-- Cooking Time -->
+          <label for="cook">Cooking Time: </label>
+          <input
+            class="field-divided"
+            type="number"
+            id="cook"
+            name="cook"
+            min="0"
+            step="1"
+            placeholder="cooking time in mins"
+            value=""
+          /><br />
+
+          <!-- Serving Size -->
+          <label for="serves">Serving Size: </label>
+          <input
+            class="field-divided"
+            type="number"
+            id="servers"
+            name="serves"
+            min="0"
+            step="1"
+            placeholder="serving size here"
+            value=""
+          /><br />
+
+          <!-- Ingredients-->
+          <label for="ingredient_input">Ingredients: </label><br />
+          <input
+            class="field-long"
+            type="text"
+            id="ingredient_input"
+            name="ingredients_input"
+            placeholder="ingredient here"
+            value=""
+          /><br />
+
+          <input
+            type="button"
+            class="myButton"
+            id="addIngredient"
+            value="add next ingredient"
+          />
+          <br />
+          <div class="ingredient_container">
+            <!-- display data already entered here -->
+            <!-- ingredients here-->
+            <ul id="ingredients_list"></ul>
+          </div>
+          <br />
+
+          <!-- Steps -->
+          <label for="instructions_input">Instructions: </label><br />
+          <input
+            class="field-long"
+            type="text"
+            id="instructions_input"
+            name="instructions_input"
+            placeholder="step here"
+            value=""
+          /><br />
+
+          <input
+            type="button"
+            class="myButton"
+            id="addStep"
+            value="add next step"
+          />
+          <br />
+          <div class="ingredient_container">
+            <!-- display data already entered here -->
+            <!-- steps here -->
+            <ul id="instructions_list"></ul>
+          </div>
+          <br />
+
+          <input type="submit" />
+
+          <ul>
+            <input id="hidden_ul" type="hidden" />
+          </ul>
+          <ul>
+            <input id="hidden_ul_step" type="hidden" />
+          </ul>
+        </form>
+      </div>
+
+
+    <% } else { %>
+      <div class="signup">
+          <a href="/users/new">
+            <input
+              type="submit"
+              value="sign up"
+              class="waves-effect waves-light btn"
+            />
+          </a>
+        </div>
+        <div class="login">
+          <a href="/sessions/new">
+            <input
+              type="submit"
+              value="log in"
+              class="waves-effect waves-light btn"
+            />
+          </a>
+        </div>
+    <% } %>
 
     <script>
+      // ======= Remove Button =======
+      //get a reference to the element
+      var myBtn = document.getElementsByClassName("remove");
+
+      //add event listener
+      for (let i = 0; i < myBtn.length; i++) {
+        myBtn[i].addEventListener("click", function(err) {
+          err.preventDefault();
+          this.parentNode.parentNode.removeChild(this.parentNode);
+        });
+      }
+
       // ======= Button Events =======
       //get a reference to the element
       var myBtn = document.getElementsByClassName("myButton");
@@ -139,6 +202,7 @@
       // ======= Adding ingredients =======
       var btnAddIngredient = document.getElementById("addIngredient");
       var ulIngredientHidden = document.getElementById("hidden_ul");
+      var ulIngredientShow = document.getElementById("ingredients_list");
 
       btnAddIngredient.addEventListener("click", function() {
         // create li
@@ -164,6 +228,29 @@
         // append li to ul
         ulIngredientHidden.appendChild(newLi);
 
+        // create remove button
+        var btnRemove = document.createElement("input");
+
+        // set attributes to btnRemove
+        btnRemove.setAttribute("type", "button");
+        btnRemove.setAttribute("class", "remove");
+        btnRemove.setAttribute("value", "remove");
+
+        // event listener for btnRemove
+        btnRemove.addEventListener("click", function(err) {
+          err.preventDefault();
+          this.parentNode.parentNode.removeChild(this.parentNode);
+        });
+
+        // append remove button to li
+        newLi.appendChild(btnRemove);
+
+        // append input tag to li
+        newLi.appendChild(tagInput);
+
+        // append li to ul
+        ulIngredientShow.appendChild(newLi);
+
         // clear field for new input
         document.getElementById("ingredient_input").value = "";
       });
@@ -171,6 +258,7 @@
       // ======= Adding instructions =======
       var btnAddSteps = document.getElementById("addStep");
       var ulStepsHidden = document.getElementById("hidden_ul_step");
+      var ulStepsShow = document.getElementById("instructions_list");
 
       btnAddSteps.addEventListener("click", function() {
         // create li
@@ -195,6 +283,29 @@
 
         // append li to ul
         ulStepsHidden.appendChild(newLi);
+
+        // create remove button
+        var btnRemove = document.createElement("input");
+
+        // set attributes to btnRemove
+        btnRemove.setAttribute("type", "button");
+        btnRemove.setAttribute("class", "remove");
+        btnRemove.setAttribute("value", "remove");
+
+        // event listener for btnRemove
+        btnRemove.addEventListener("click", function(err) {
+          err.preventDefault();
+          this.parentNode.parentNode.removeChild(this.parentNode);
+        });
+
+        // append remove button to li
+        newLi.appendChild(btnRemove);
+
+        // append input tag to li
+        newLi.appendChild(tagInput);
+
+        // append li to ul
+        ulStepsShow.appendChild(newLi);
 
         // clear field for new input
         document.getElementById("instructions_input").value = "";
