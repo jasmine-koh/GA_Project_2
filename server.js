@@ -10,7 +10,7 @@ require("dotenv").config();
 
 // const Recipe = require("./models/recipe.js");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const mongoURI = process.env.MONGODB_URI;
 
 mongoose.connect("mongodb://localhost:27017/apron", {
