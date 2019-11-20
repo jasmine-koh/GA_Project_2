@@ -37,6 +37,10 @@ app.use("/apron", recipeController);
 app.use("/users", userController);
 app.use("/sessions", sessionsController);
 
+app.get("/", (req, res) => {
+  res.redirect("/apron");
+});
+
 app.listen(PORT, () => {
   console.log(`i'm listening...`);
 });
