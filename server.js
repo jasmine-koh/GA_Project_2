@@ -38,6 +38,7 @@ app.use("/users", userController);
 app.use("/sessions", sessionsController);
 
 app.get("/", (req, res) => {
+  console.log("inside / route");
   res.redirect("/apron");
 });
 

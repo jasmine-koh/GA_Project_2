@@ -6,6 +6,8 @@ const Recipe = require("../models/recipe.js");
 // ====== INDEX ======
 router.get("/", (req, res) => {
   Recipe.find((error, allRecipe) => {
+    if (error) console.log(error);
+
     res.render("index.ejs", {
       recipe: allRecipe,
       currentUser: req.session.currentUser
