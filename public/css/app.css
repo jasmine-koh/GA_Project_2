@@ -57,6 +57,7 @@
 .photo-grid-container {
   display: flex;
   justify-content: center;
+  margin: 5px 0;
 }
 
 .photo-grid {
@@ -80,6 +81,7 @@
 img {
   width: 270px;
   height: 150px;
+  border-radius: 8px;
 }
 
 .user_container {
